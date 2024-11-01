@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Clientes";
+}
+@model List<sa_bitsion_DAL.Models.Cliente>
+
+<main>
+
+    @if (TempData["MessageTable"] != null)
+    {
+        var messageType = TempData["MessageType"] ?? "info";
+        <div class="alert alert-@messageType alert-dismissible fade show" role="alert">
+            @TempData["MessageTable"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+    }
+<section>
+    <h2 id="titulo">Lista de clientes</h2>
+    <div id="tituloUderline"></div>
+    <div class="tablaResponsiva">
+        <table id="tablaClientes">
+            <thead>
+                <tr>
+                    <th>D.N.I</th>
+                    <th>Nombre Completo</th>
+                    <th>Edad</th>
+                    <th>Género</th>
+                    <th>Estado</th>
+                    <th>Estado Civil</th>
+                    <th>¿Maneja?</th>
+                    <th>¿Usa Lentes?</th>
+                    <th>¿Es diabético/a?</th>
+                    <th>¿Otra enfermedad?</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var cliente in Model)
+                    {
+                        <tr>
+                            <td>@cliente.DNI</td>
+                            <td>@cliente.NombreCompleto</td>
+                            <td>@cliente.Edad</td>
+                            <td>@cliente.Genero</td>
+                            <td>@(cliente.Estado ? "Activo" : "Inactivo")</td>
+                            <td>@(cliente.EstadoCivil ? "Casado" : "Soltero")</td>
+                            <td>@(cliente.Maneja ? "Sí" : "No")</td>
+                            <td>@(cliente.Lentes ? "Sí" : "No")</td>
+                            <td>@(cliente.Diabetes ? "Sí" : "No")</td>
+                            <td>@(cliente.OtraEnfermedad != null ? cliente.OtraEnfermedad : "No")</td>
+                            <td class="accionesTabla">
+
+                                @using (Html.BeginForm("ObtenerClientePorDni", "Cliente", FormMethod.Get))
+                                {
+                                    @Html.Hidden("dni", cliente.DNI)
+                                    <button class="botonTabla botonEditarTabla" type="submit">Editar</button>
+                                }
+
+                                @using (Html.BeginForm("EliminarCliente", "Cliente", FormMethod.Post))
+                                {
+                                    @Html.Hidden("dniCliente", cliente.DNI)
+                                    <button class="botonTabla botonEliminarTabla" type="submit">Eliminar</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="10">No hay clientes para mostrar.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+</main>

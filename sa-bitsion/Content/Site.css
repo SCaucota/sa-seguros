@@ -1,0 +1,128 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/*---Index---*/
+#titulo{
+    font-size: 25px;
+    margin-bottom: 1rem;
+}
+
+#tituloUderline {
+    background-color: #d62828;
+    height:6px;
+    width: 250px;
+}
+
+#formAgregar{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+#formAgregar div{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#formAgregar div input{
+    border-radius: 10px;
+    height: 40px;
+    padding: 1rem;
+    border: 1px solid;
+}
+
+#formAgregar div select{
+    border-radius: 10px;
+    height: 40px;
+    padding-inline: 1rem;
+    border: 1px solid;
+}
+
+#botonForm {
+    border-radius: 10px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border: 1px solid;
+    width: 250px;
+}
+
+/*---Lista Clientes---*/
+
+.tablaResponsiva {
+    overflow-x: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 2rem;
+}
+
+#tablaClientes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaClientes thead tr{
+    background-color: #ffbd9d;
+}
+
+#tablaClientes thead tr th{
+    border: 1px solid white;
+    padding: 1rem 2rem;
+    font-size: 15px;
+    text-align: center;
+}
+
+#tablaClientes tbody{
+    text-align: center;
+}
+
+#tablaClientes tbody td{
+    border: 1px solid #ffbd9d;
+}
+
+.accionesTabla {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-block: 1rem;
+}
+
+.botonTabla {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    color: white;
+    width: 90%;
+    border: 1px solid;
+}
+
+.botonEditarTabla{
+    background-color: black;
+}
+
+.botonEliminarTabla {
+    background-color: #d62828;
+}
+
+/*---Editar Cliente---*/

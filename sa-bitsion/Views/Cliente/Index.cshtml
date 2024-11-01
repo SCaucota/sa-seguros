@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model sa_bitsion_DAL.Models.Cliente
+
+<main>
+    @if (TempData["Message"] != null)
+    {
+        var messageType = TempData["MessageType"] ?? "info";
+        <div class="alert alert-@messageType alert-dismissible fade show" role="alert">
+            @TempData["Message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+    }
+    <section>
+        <h1 id="titulo">Agregar Cliente</h1>
+        <div id="tituloUderline"></div>
+        <form id="formAgregar" action="@Url.Action("AgregarCliente", "Cliente")" method="POST">
+            <div>
+                <label for="DNI">D.N.I</label>
+                <input name="DNI" id="dni" value="@Model.DNI"/>
+                @Html.ValidationMessageFor(m => m.DNI, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <label for="NombreCompleto">Nombre Completo</label>
+                <input name="NombreCompleto" id="NombreCompleto" value="@Model.NombreCompleto" />
+                @Html.ValidationMessageFor(m => m.NombreCompleto, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <label for="Edad">Edad</label>
+                <input type="number" name="Edad" id="Edad" value="@Model.Edad" />
+                @Html.ValidationMessageFor(m => m.Edad, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <label for="Genero">Género</label>
+                <select name="Genero">
+                    <option value="femenino" @(Model.Genero == "femenino" ? "selected" : "")>Femenino</option>
+                    <option value="masculino" @(Model.Genero == "masculino" ? "selected" : "")>Masculino</option>
+                    <option value="otro" @(Model.Genero == "otro" ? "selected" : "")>Otro</option>
+                </select>
+                @Html.ValidationMessageFor(m => m.Genero, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <label for="Estado">Estado</label>
+                <select name="Estado">
+                    <option value="true" @(Model.Estado ? "selected" : "")>Activo</option>
+                    <option value="false" @(!Model.Estado ? "selected" : "")>Inactivo</option>
+                </select>
+            </div>
+            <div>
+                <label for="EstadoCivil">Estado Civil</label>
+                <select name="EstadoCivil">
+                    <option value="true" @(Model.EstadoCivil ? "selected" : "")>Casado</option>
+                    <option value="false" @(!Model.EstadoCivil ? "selected" : "")>Soltero</option>
+                </select>
+            </div>
+            <div>
+                <label for="Maneja">¿Maneja?</label>
+                <select name="Maneja" id="maneja">
+                    <option value="true" @(Model.Maneja ? "selected" : "")>Sí</option>
+                    <option value="false" @(!Model.Maneja ? "selected" : "")>No</option>
+                </select>
+            </div>
+            <div>
+                <label for="Lentes">¿Usa Lentes?</label>
+                <select name="Lentes" id="lentes">
+                    <option value="true" @(Model.Lentes ? "selected" : "")>Sí</option>
+                    <option value="false" @(!Model.Lentes ? "selected" : "")>No</option>
+                </select>
+            </div>
+            <div>
+                <label for="Diabetes"">¿Es diabético/a?</label>
+                <select name="Diabetes" id="diabetes">
+                    <option value="true" @(Model.Diabetes ? "selected" : "")>Sí</option>
+                    <option value="false" @(!Model.Diabetes ? "selected" : "")>No</option>
+                </select>
+            </div>
+            <div>
+                <label for="OtraEnfermedad">¿Padece de alguna otra enfermedad? ¿Cuál?</label>
+                <input name="OtraEnfermedad" id="OtraEnfermedad" value="@Model.OtraEnfermedad" />
+                @Html.ValidationMessageFor(m => m.OtraEnfermedad, "", new { @class = "text-danger" })
+                <p>*Sino padece de ninguna otra enfermedad, deje el campo vacío</p>
+            </div>
+            <button type="submit" id="botonForm">Agregar Cliente</button>
+        </form>
+    </section>
+    @*@using (Html.BeginForm("ObtenerClientes", "Cliente", FormMethod.Get))
+    {
+        <button type="submit">Ver Clientes</button>
+    }*@
+</main>
